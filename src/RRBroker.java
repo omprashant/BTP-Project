@@ -1,0 +1,37 @@
+import java.util.ArrayList;
+import java.util.List;
+
+import org.cloudbus.cloudsim.Cloudlet;
+import org.cloudbus.cloudsim.DatacenterBroker;
+
+/**
+ * A Broker that schedules Tasks to the VMs 
+ * as per Round Robin Scheduling Policy
+ * 
+ *
+ */
+public class RRBroker extends DatacenterBroker {
+
+	public RRBroker(String name) throws Exception {
+		super(name);
+		// TODO Auto-generated constructor stub
+	}
+
+	//scheduling function
+	public void scheduleTaskstoVms(){
+		int reqTasks=cloudletList.size();
+		int reqVms=vmList.size();
+		System.out.println("\n\tRound Robin Broker Schedules...\n");
+    	for(int i=0;i<reqTasks;i++){
+    		bindCloudletToVm(i, (i%reqVms));
+    		System.out.println("Task"+cloudletList.get(i).getCloudletId()+" is bound with VM"+vmList.get(i%reqVms).getId());
+    	}
+    	
+    	System.out.println("\n");
+	}
+
+	public void submitCloudletList1(List<ArrayList<Cloudlet>> outerList) {
+		// TODO Auto-generated method stub
+		
+	}
+}
